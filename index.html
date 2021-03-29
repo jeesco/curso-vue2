@@ -8,20 +8,25 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div id="app" v-bind:style="{ background: '#' + color }">
-    <coin-detail
-      v-on:change-color="updateColor"
-      v-bind:coin="btc">
+  <div id="app">
+    <img :src="img" :alt="name">
+    <h1>
+      {{ name }}
+      <span v-if="changePercent > 0">✊</span>
+      <span v-else-if="changePercent < 0">🤟</span>
+      <span v-else="changePercent">✌</span>
+    </h1>
+    <ul>
+      <li v-for="(p, i) in prices" v-bind:key="p">
+        {{ i }} - {{ p }}
+      </li>
+    </ul>
 
-
-      <template v-slot:text>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, aperiam? Non dignissimos nam, voluptatem ducimus eos, pariatur dolor quisquam at asperiores praesentium molestias recusandae cum inventore, omnis consequatur? Voluptate, quo?</p>
-      </template>
-
-      <template v-slot:link>
-        <a href="#">Link!</a>
-      </template>
-    </coin-detail>
+    <ul>
+      <li v-for="(p, i) in pricesWithDays" v-bind:key="p.day">
+        {{ i }} - {{ p.day }} - {{ p.value }}
+      </li>
+    </ul>
 
   </div>
 
